@@ -1,0 +1,39 @@
+alter table (foreign key)
+
+use etoile_actu_projet;
+alter table article
+add constraint fk_creer_utilisateur
+foreign key (id_util)
+references utilisateur(id_util);
+
+alter table commentaire
+add constraint fk_poser_utilisateur
+foreign key (id_util)
+references utilisateur(id_util);
+
+alter table utilisateur
+add constraint fk_posseder_role
+foreign key(id_role)
+references role(id_role);
+
+alter table disposer
+add constraint fk_disposer_jeuxvideo
+foreign key(id_jeuxvideo)
+references jeuxvideo(id_jeuxvideo);
+
+alter table disposer
+add constraint fk_disposer_genre
+foreign key(id_genre)
+references genre(id_genre);
+
+alter table avoir
+add constraint fk_avoir_evenement
+foreign key(id_evenement)
+references evenement(id_evenement);
+
+alter table avoir
+add constraint fk_avoir_ville
+foreign key(id_ville)
+references ville(id_ville);
+
+

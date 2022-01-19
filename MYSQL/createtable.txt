@@ -1,0 +1,72 @@
+MYSQL CREATE TABLE:
+
+use etoile_actu_projet;
+CREATE TABLE utilisateur(
+        id_util   Int  Auto_increment primary key NOT NULL ,
+        pseudo  Varchar (50) NOT NULL ,
+        mdp Varchar(50) NOT NULL,
+        email Varchar(150) NOT NULL,
+        image_profil varchar(150) NOT NULL,
+        id_role int
+)ENGINE=InnoDB;
+
+CREATE TABLE article(
+		id_article  Int  Auto_increment primary key NOT NULL,
+        image_article varchar(150) NOT NULL,
+        note_article float,
+        nom_article varchar(150) NOT NULL,
+        description_article TEXT NOT NULL,
+        date_publication DATE NOT NULL,
+        id_util int
+)ENGINE=InnoDB;
+
+CREATE TABLE jeuxvideo(
+		id_jeuxvideo  Int  Auto_increment primary key NOT NULL,
+        nom_jeu varchar(150) NOT NULL,
+        description_jeu text not null
+)ENGINE= InnoDB;
+
+CREATE TABLE commentaire(
+		id_commentaire  Int  Auto_increment primary key NOT NULL ,
+        desc_commentaire varchar(200) not null,
+        id_util int
+)ENGINE= InnoDB;
+
+CREATE TABLE role(
+		id_role  Int  Auto_increment primary key NOT NULL,
+        nom_role varchar(50) NOT NULL
+)ENGINE= InnoDB;
+
+
+CREATE TABLE photo(
+		id_photo  Int  Auto_increment primary key NOT NULL ,
+        description_photo varchar(150) NOT NULL
+)ENGINE= InnoDB;
+
+
+CREATE TABLE evenement(
+		id_evenement  Int  Auto_increment primary key NOT NULL ,
+        description_evenement text NOT NULL,
+        date_evenement DATE NOT NULL,
+        lien varchar(200) NOT NULL
+)ENGINE= InnoDB;
+
+CREATE TABLE disposer(
+		id_jeuxvideo INT,
+        id_genre INT
+)ENGINE= InnoDB;
+
+CREATE TABLE avoir(
+		id_evenement INT,
+        id_ville INT
+)ENGINE = InnoDB;
+
+CREATE TABLE ville(
+		id_ville Int  Auto_increment primary key NOT NULL ,
+        nom_ville varchar(50)
+)ENGINE = InnoDB;
+
+CREATE TABLE genre(
+		id_genre Int  Auto_increment primary key NOT NULL ,
+        nom_genre varchar(50)
+)ENGINE= InnoDB;

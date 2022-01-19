@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;1,200&display=swap');
+body{
+    color:#3B2A1C;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 150%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+
+}
+.articles {
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+
+.coheader{
+    color:#3B2A1C !important ;
+    text-decoration: none;
+   
+}
+.ifconnected{
+    background-color: #E36B6B;
+    margin-bottom: 1%;
+    display: flex;
+    gap:81%;
+}
+
+
+.img_profil{
+    max-width: 30px;
+    max-height: 30px;
+}
+
+.nav{
+    background-color:#E36B6B ;
+    height: 6em;
+    padding: 1.2%;
+    margin-top: 1%;
+}
+clip-path{
+
+    margin-left: 34%;
+    padding:10%;
+    width: 66%;
+    margin-top: -20%;
+    position: absolute;
+  
+    background-color: #E36B6B;
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 49% 100%);
+
+}
+
+.col-6{
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 50% !important;
+}
+.miniImg {
+    max-width: 90px;
+    max-height: 90px;
+  }
+  .connec{
+    height: 100%!important;
+
+  }
+  
+  .bigImg {
+      margin-top: 2%;
+      margin-left: 2%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+.imgArticle{
+    width: 100%  ;
+    height: 90% ;
+}
+
+.btnArticle{
+    background-color: #E36B6B  !important;
+    color: #3B2A1C !important;
+    border-color: #E36B6B !important;
+}
+
+.articles{
+
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.card{
+    margin-top: 5% !important;
+    margin-left: 2%;
+    height: 100%;
+
+}
+
+.profil{
+    background-color: #FA9583;
+    width: 100.65%;
+}
+.profil-grid{
+   
+    display: grid;
+    grid-template-columns: 0fr 0fr 0fr;
+    
+
+}
+
+
+
+
+
+.main{
+    min-height: 80vh;
+}
+
+input{
+    width: 60% !important;
+}
+.text{
+    height: 300px !important;
+    width: 100% !important;
+}
+.title-float{
+    margin-left: 10%;
+    position:relative;
+    overflow:hidden;
+  }
+  .title-float:after {
+    content:'';
+    height:0;
+    margin-top: 1.5%;
+    border-top:solid 4px;
+    width:60%;
+    position:absolute;
+    margin-left: 2%;
+    color: #E36B6B !important;
+  }
+  
+  .responsive-title{
+      display: none;
+  }
+  
+
+.btn-post{
+    background-color:#E36B6B ;
+    border-color: #E36B6B;
+    color:#3B2A1C;
+    padding: 1%;
+    margin-top:5%;
+    width: 60%;
+}
+.btn-connexion{
+    margin-left: 11%;
+    background-color:#E36B6B ;
+    border-color: #E36B6B;
+    color:#3B2A1C;
+    padding: 1%;
+}
+
+
+
+.lien{
+    color:#3B2A1C ;
+}
+
+.lien:hover{
+    color:#A6FFF2;
+}
+
+
+.footer{
+    background-color: #E36B6B !important;
+    bottom:0 !important; /* en bas */
+	height: 50px;	/* hauteur du footer imposée */
+	width:100%;
+    
+}
+
+#footer{
+    color: #3B2A1C !important;
+}
+
+.connexion{
+    margin-left: 35%;
+    margin-top: 2%;
+    font-weight: bold;
+    font-size: 200%;
+}
+
+
+.form{
+    margin-left: 38% !important;
+    margin-top: 2%;
+}
+
+
+
+#trait_dessus
+{
+
+border-top: 1px solid #000;
+
+} 
+
+
+.chibi{
+    margin-top: 0%;
+    margin-left: 20%
+}
+
+.redacteur{
+    margin-top: 3%;
+    margin-left: 20%
+
+}
+
+.twitter{
+    margin-left: 23%
+
+}
+
+
+.title-float{
+  margin-left: 10%;
+  position:relative;
+  overflow:hidden;
+}
+.title-float:after {
+  content:'';
+  height:0;
+  margin-top: 1.5%;
+  border-top:solid 4px;
+  width:60%;
+  position:absolute;
+  margin-left: 2%;
+  color: #E36B6B !important;
+}
+
+.nav-responsive{
+    display: none;
+}
+
+
+@media (max-width: 400px) { 
+.nav{
+    display: none;
+}
+.nav-responsive{
+    display: unset;
+}
+  #menu_links{
+    display: none;
+  }
+  #menu{
+    background-color: #E36B6B;
+    margin: 15px auto;
+    border: 1px solid black;
+  }
+  #menu a{
+    text-decoration: none;
+    color: whitesmoke;
+    display: block;
+    padding: 1em;
+  }
+  #menu #menu_link:hover a{
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  #menu_bars{
+    text-align: right;
+  }
+  #burger:checked ~ #menu_links{
+    display: block;
+  }
+  .ifconnected{
+      display: none;
+  }
+
+  clip-path{
+    display: none;
+}
+.responsive-title{
+    display: unset;
+    margin-left: 20%;
+    margin-top: 2%;
+    font-weight: bold;
+    font-size: 150%;
+}
+.title-float{
+    display: none;
+}
+}
+
