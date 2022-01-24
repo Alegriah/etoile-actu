@@ -6,15 +6,15 @@ class Utilisateur{
     private $mdp;
     private $email;
     private $imageProfil;
-    private $idUtil;
+    private $idUser;
 
-    function __construct($pseudo, $mdp, $email, $imageProfil,$idUtil)
+    function __construct($pseudo, $mdp, $email, $imageProfil,$idUser)
     {
        $this-> pseudo = $pseudo;
        $this-> mdp = $mdp;
        $this-> email = $email;
        $this-> imageProfil = $imageProfil;
-       $this-> id_util = $idUtil;
+       $this-> id_util = $idUser;
     }
     
 	public function getPseudo() {

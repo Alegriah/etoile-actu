@@ -70,8 +70,13 @@ class UtilisateurController{
             $_SESSION['user'] = $user;
         }
 
-        function modifyBookValidate()
-    {
+        public function modifyUser($id)
+        {
+            $utilisateur = $this->utilisateurManager->FindUserByIdDB($id);
+            require "view/modifierProfil.view.php";
+        }
+
+        function modifyUserValidate(){
         
             $currentImage = $this->utilisateurManager->FindUserByIdDB($_POST['id'])->getImage();
             $file = $_FILES['image'];
@@ -89,8 +94,7 @@ class UtilisateurController{
                 // }
             }
             $this->utilisateurManager->modifyUser($_POST['id'], $_POST['pseudo'], $_POST['email'],$_POST['mdp'], $imageToAdd);
-            GlobalController::alert("success","Modification Réalisée");
-            header("Location: " . URL . "livres");
+           // header("Location: " . URL . "etoile/profil");
     }
     
     

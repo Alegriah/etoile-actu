@@ -10,12 +10,11 @@ require_once "template.php";
 
 <div class="main">
     <div class="profil">
-        <div class="title-news">
+        <div>
             <h2 class="connexion title-float">
                 <?=$titre?>
             </h2>
         </div>
-
         <div class="row profil-grid">
             <div></div>
             <div class="grid1">

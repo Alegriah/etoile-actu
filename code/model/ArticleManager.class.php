@@ -39,8 +39,6 @@
             }
 
             function addArticleDB($title, $description, $image, $date, $id_util){
-    
-         
                 $sql = "INSERT INTO article(image_article, nom_article,description_article, date_publication, id_util) VALUES(:image, :nom, :description, :date, :id)";
                 $req =  $this -> getDB() -> prepare($sql);
                 $result = $req->execute([
@@ -55,8 +53,6 @@
                     $article = new Article($this-> getDB() -> lastInsertID(), $title, $description, $image,$date,$id_util);
                     $this -> addArticle($article);
                 }
-                   
-            
             }
 
         public function getArticleByName($name){
@@ -78,6 +74,8 @@
             }
             return "delete complete";
         }
+
+     
     
         }
 

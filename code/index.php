@@ -49,7 +49,10 @@ try{
                 }else if($url[1] == "suppression"){
                     $controller -> deleteArticle($url[2]);
                 }else if($url[1] == "modifier_profil"){
-                    require "view/modifierProfil.view.php";
+                   //$user -> modifyUser($url[2]);
+                   require 'view/modifierProfil.view.php';
+                }else if($url[1] == "profil_validate"){
+                   // $user-> modifyUserValidate();
                 }
 
                     else{
