@@ -4,36 +4,35 @@ include 'Model.class.php';
     class UtilisateurManager extends Model{
 
  /**
-     * FindUserById
+     * findUserById
      *
      * @param  mixed $id
      * @return user by id
      */
-    public function FindUserByIdDB($id){
-        $sql = "SELECT * FROM utilisateur WHERE id_util = :id_util";
+    public function findUserByIdDB($id){
+        $sql = "SELECT * FROM utilisateur WHERE id_util=:id_util";
         $req = $this->getDB()->prepare($sql);
         $result = $req->execute([
             "id_util"=>$id
         ]);
         $data = $req->fetch(PDO::FETCH_OBJ);
-
-        $user = new Utilisateur($data->id_util,$data->pseudo,$data->mdp, $data->email,$data->id_role);
-        // var_dump($user);
-     
-
-        return $user;
+        if (!empty($data)) {
+            $user = new Utilisateur($data->id_util,$data->pseudo,$data->mdp, $data->image_profil, $data->email,$data->id_role);
+            return $user;
+        } else {
+            return null;
+        }
     }
 
-  
-    public function FindUserByPseudoDB($pseudo){
-        $sql = "SELECT * FROM utilisateur WHERE pseudo = :pseudo";
+    public function findUserByPseudoDB($pseudo){
+        $sql = "SELECT * FROM utilisateur WHERE pseudo=:pseudo";
         $req = $this->getDB()->prepare($sql);
         $result = $req->execute([
             ":pseudo"=>$pseudo
         ]);
         $data = $req->fetch(PDO::FETCH_OBJ);
         if (!empty($data)){
-            $users = new Utilisateur($data->id_util,$data->pseudo,$data->mdp,$data->email,$data->id_role);
+            $users = new Utilisateur($data->id_util,$data->pseudo,$data->mdp, $data->image_profil, $data->email,$data->id_role);
             return $users;
         }
         else{
@@ -46,54 +45,60 @@ include 'Model.class.php';
         $sql = ("INSERT INTO utilisateur(pseudo,mdp,email) VALUES(:pseudo, :pass, :email)");
         $req = $this -> getDB() -> prepare($sql);
         $result = $req->execute([
-        ":pseudo" => $pseudo,
-        ":pass" =>$password, 
-        ":email" => $email,
-
+            ":pseudo" => $pseudo,
+            ":pass" =>$password, 
+            ":email" => $email,
         ]);
         return $result;
     }
+
     public function lastId(){
         $lastId = $this->getDB()->lastInsertId();
         return $lastId;
-    } 
+    }
 
+    public function getAllUser(){
+        $sql = "SELECT * FROM  utilisateur";
+        $req =  $this -> getDB() -> prepare($sql);
+        $result = $req -> execute();
+        $data = $req->fetchAll(PDO::FETCH_OBJ);
+
+    }
 
     public function getUser(){
         $sql = "SELECT * FROM  utilisateur";
         $req =  $this -> getDB() -> prepare($sql);
         $result = $req -> execute();
         $data = $req->fetchAll(PDO::FETCH_OBJ);
-
         $util = $this->FindUserByPseudoDB($_POST['pseudo']);
-        session_start();
         if(isset($_POST['connexion'])){
-            if(empty($_POST['pseudo'])){
-                echo 'Veuillez renseigner un pseudo';
-            }elseif(empty(['mdp'])){
-                echo "Veuillez renseigner un mot de passe";
-            }if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
-                foreach($data as $valeur){
-                    if($_POST['pseudo'] == $valeur -> pseudo && $_POST['mdp '] == password_verify($_POST['mdp'],$util->getMdp())){
-                        $_SESSION['pseudo'] = $valeur ->pseudo;
-                        $_SESSION['id_user'] = $valeur -> id_util;
-                        $_SESSION['id_role'] = $valeur -> id_role;
-                        $_SESSION['email'] = $valeur-> email;
-                        $_SESSION['image'] = $valeur -> image_profil;
-                       header("Location: " . URL . "accueil");
-               }else{
-                header("Location: " . URL . "etoile/connexion");
-    
-            }
-           
-            }
-        }
+                if(empty($_POST['pseudo'])){
+                    echo 'Veuillez renseigner un pseudo';
+                }elseif(empty(['mdp'])){
+                    echo "Veuillez renseigner un mot de passe";
+                }if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
+                    foreach($data as $value){
+                        if($_POST['pseudo'] == $value -> pseudo && $_POST['mdp'] == password_verify($_POST['mdp'],$value -> mdp)){
+                            $_SESSION['pseudo'] = $value ->pseudo;
+                            $_SESSION['id_user'] = $value -> id_util;
+                            $_SESSION['id_role'] = $value -> id_role;
+                            $_SESSION['email'] = $value-> email;
+                            $_SESSION['image'] = $value -> image_profil;
+                            $_SESSION['mdp']= $_POST['mdp'];
+                            header("Location: " . URL . "accueil");
+                        }else{
+                            header("Location: " . URL . "etoile/connexion");
 
-        }   
+                        }
+
+                    }
+                }
+
+        }
     }
 
-    public function modifUserDB($id, $pseudo, $mdp, $email, $image){
-        $sql = "UPDATE utilisateur set pseudo = :pseudo, mdp = :mdp, email = :email, image_profil = :image WHERE id_util = :id";
+        public function modifUserDB($id, $pseudo, $mdp, $email, $image){
+        $sql = "UPDATE utilisateur set pseudo=:pseudo, mdp=:mdp, email=:email, image_profil=:image WHERE id_util=:id";
         $req = $this->getDB()->prepare($sql);
         $result = $req->execute([
             ":pseudo"=>$pseudo,
@@ -102,11 +107,5 @@ include 'Model.class.php';
             ":image"=>$image,
             ":id"=>$id
         ]);
-        if($result){
-            $this-> FindUserByIdDB($id)->setPseudo($pseudo);
-            $this->  FindUserByIdDB($id)->setMdp($mdp);
-            $this-> FindUserByIdDB($id)->setEmail($email);
-            $this-> FindUserByIdDB($id)->setImage($image);
-    }
     }
 }

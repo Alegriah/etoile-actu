@@ -7,14 +7,16 @@ class Utilisateur{
     private $email;
     private $imageProfil;
     private $idUser;
+    private $idRole;
 
-    function __construct($pseudo, $mdp, $email, $imageProfil,$idUser)
+    function __construct($pseudo, $mdp, $email, $imageProfil,$idUser, $idRole)
     {
        $this-> pseudo = $pseudo;
        $this-> mdp = $mdp;
        $this-> email = $email;
        $this-> imageProfil = $imageProfil;
-       $this-> id_util = $idUser;
+       $this-> idUser = $idUser;
+       $this-> idRole = $idRole;
     }
     
 	public function getPseudo() {
@@ -26,6 +28,15 @@ class Utilisateur{
     {
         $this->pseudo = $pseudo;
 
+        return $this;
+    }
+
+    public function getIdRole(){
+        return $this->idRole;
+    }
+
+    public function setIdRole($idRole): self{
+        $this->idRole = $idRole;
         return $this;
     }
 

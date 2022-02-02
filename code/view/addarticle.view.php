@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php
 ob_start();
 
 $titre = "Ajouter un article";

@@ -1,11 +1,10 @@
 <?php
-session_start(); 
 ob_start();
 
 $titre = "Mon profil";
 $content = ob_get_clean();
 require_once "template.php";
-//var_dump($_SESSION);
+var_dump($_SESSION['image']);
 ?>
 
 <div class="main">

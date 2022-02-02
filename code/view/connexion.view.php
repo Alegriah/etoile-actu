@@ -1,5 +1,4 @@
 <?php 
-session_start(); 
 ob_start();
 
 $titre = "Connexion";
@@ -28,7 +27,8 @@ if (isset($_SESSION['email'])){
             </div>
         </div>
         <div class="control has-icons-left">
-                <input type="password"  class="input" name="mdp" required>
+            <label for="mdp" class="form-label"> Mot de passe </label>
+            <input type="password"  class="input" name="mdp" required>
                 <span class="icon is-small is-left">
                   <i class="fa fa-lock"></i>
                 </span>

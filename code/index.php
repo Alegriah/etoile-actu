@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "
 https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
@@ -16,7 +16,6 @@ try{
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
     
         switch($url[0]){
-    
             case 'accueil';
             require 'view/accueil.view.php';
             break;
@@ -49,10 +48,9 @@ try{
                 }else if($url[1] == "suppression"){
                     $controller -> deleteArticle($url[2]);
                 }else if($url[1] == "modifier_profil"){
-                   //$user -> modifyUser($url[2]);
-                   require 'view/modifierProfil.view.php';
+                    $user -> modifyUser();
                 }else if($url[1] == "profil_validate"){
-                   // $user-> modifyUserValidate();
+                   $user-> modifyUserValidate();
                 }
 
                     else{

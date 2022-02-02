@@ -1,6 +1,5 @@
 <?php 
 
-session_start(); 
 ob_start();
 
 $titre = "Article";
@@ -15,9 +14,9 @@ require_once "template.php";
                 <?=$titre?>
             </h2>
         </div>
-        <h2 class="responsive-title ">
+        <h3 class="responsive-title ">
             <?=$titre?>
-        </h2>
+        </h3>
         <div class="d-flex flex-row responsive">
             <?php 
             foreach($newArticle as $value):?>
@@ -25,17 +24,16 @@ require_once "template.php";
                 <img class="imgArticle" src="<?=URL?>public/image/<?= $value-> getImageArticle()?>" class="card-img-top"
                     alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">
+                    <h4 class="card-title">
                         <?=$value-> getNomArticle()?>
-                    </h5>
+                    </h4>
                     <a href="<?= URL ?>etoile/afficher/<?=$value->getIdArticle()?>"
                         class="btnArticle btn btn-primary">Lire
                         l'article</a>
                     <?php if (isset($_SESSION['id_role']) && $_SESSION['id_role'] == 1){ ?>
                     <form action="<?= URL ?>etoile/suppression/<?= $value->getIdArticle()?>"
                         onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
-                        <button type="submit" class=" btn-delete button is-danger articleButton ml-5 btn">Supprimer
-                            l'article</button>
+                        <button type="submit" class=" btn-delete button is-danger articleButton ml-5 btn">Supprimer l'article</button>
                     </form>
                     <?php }?>
                 </div>
@@ -43,7 +41,7 @@ require_once "template.php";
             <?php endforeach ?>
         </div>
     </div>
-                    </div>
+</div>
 <?php require 'footer.php';
 ?> 
 

@@ -1,5 +1,4 @@
 <?php 
-session_start();
 ob_start();
     $titre = "Lire";
     $content = ob_get_clean();

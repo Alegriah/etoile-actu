@@ -1,11 +1,11 @@
-<?php session_start(); 
+<?php
 ob_start();
 
 $titre = "Accueil";
 $content = ob_get_clean();
 require_once "template.php";
 
-
+var_dump($_SESSION);
 ?>
   <div class="main">
   <h2 class="redacteur">Rédacteur de la semaine</h2>

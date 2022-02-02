@@ -1,8 +1,9 @@
-<?php session_start(); 
+<?php
 ob_start();
 $titre = "Modifier mon profil";
 $content = ob_get_clean();
 require_once "template.php";
+
 ?>
 
 <div class="main">
@@ -16,29 +17,23 @@ require_once "template.php";
             <?=$titre?>
         </h2>
         <div class="form">
-            <form method="post" action="<?=URL." etoile/profil_validate"?>" enctype="multipart/form-data">
+            <form method="post" action="<?=URL."etoile/profil_validate"?>" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="pseudo" class="form-label">Pseudo </label>
                     <div class="control has-icons-left">
-                        <input type="text" class="input" name="pseudo">
+                        <input type="text" class="input" name="pseudo" value="<?=$_SESSION['pseudo']?>">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="mdp" class="form-label">Mot de passe </label>
                     <div class="control has-icons-left">
-                        <input type="password" class="input" name="mdp">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="confirm" class="form-label">Confirmer mot de passe </label>
-                    <div class="control has-icons-left">
-                        <input type="password" class="input" name="confirm">
+                        <input type="password" class="input" name="mdp" value="<?=$_SESSION['mdp']?>">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label"> Adresse mail </label>
                     <div class="control has-icons-left">
-                        <input type="email" class="input" name="email">
+                        <input type="email" class="input" name="email" value="<?=$_SESSION['email']?>">
                     </div>
                 </div>
                 <div class="mb-3">

@@ -1,6 +1,6 @@
 <?php 
 
-
+// il faut typer les propriétés et les paramétres de méthodes ( pas que dans cette classe mais dans toutes)
 class Article{
 
     private $imageArticle;
@@ -40,7 +40,7 @@ class Article{
     public function setNomArticle($nomArticle): self{
 
         $this->nomArticle = $nomArticle;
-        return $this;
+        return $this; // saut de ligne manquant
     }
 
     public function getDescriptionArticle(){
@@ -49,7 +49,7 @@ class Article{
 
     public function setDescriptionArticle($descriptionArticle): self{
         $this->descriptionArticle = $descriptionArticle;
-        return $this;
+        return $this; // saut de ligne manquant 
     }
 
     public function getDatePublication(){
@@ -58,7 +58,7 @@ class Article{
 
     public function setDatePublication($datePublication): self{
         $this->datePublication = $datePublication;
-        return $this;
+        return $this; // saut de ligne manquant
     }
 
     public function getIdArticle(){
