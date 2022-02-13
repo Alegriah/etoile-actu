@@ -39,18 +39,6 @@ html, body {
     padding: 1.2%;
     margin-top: 1%;
 }
-clip-path{
-
-    margin-left: 34%;
-    padding:10%;
-    width: 66%;
-    margin-top: -20%;
-    position: absolute;
-  
-    background-color: #E36B6B;
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 49% 100%);
-
-}
 
 .col-6{
     margin: 0 !important;
@@ -93,6 +81,7 @@ clip-path{
 .profil{
     background-color: #FA9583;
     width: 100.65%;
+    margin-top: -15%;
 }
 .profil-grid{
    
@@ -102,13 +91,47 @@ clip-path{
 
 }
 
-
-
-
-
-.main{
+main{
     min-height: 80vh;
 }
+.input-connexion    {
+    background-color:#E36B6B ;
+    border-color: #E36B6B;
+    color:#3B2A1C;
+    width: 20% !important;
+}
+input{
+    width: 60% !important;
+}
+.title-float{
+    margin-left: 10%;
+    position:relative;
+    overflow:hidden;
+    
+}
+.title-float:after {
+    content:'';
+    height:0;
+    margin-top: 3%;
+    border-top:solid 4px;
+    width:60%;
+    position:absolute;
+    margin-left: 2%;
+    color: #E36B6B !important;
+  }
+.responsive-title{
+    display: none;
+}
+.form{
+    margin-left: 38% !important;
+    margin-top: 2%;
+}
+
+.btn{
+    margin-bottom: 2% ;
+}
+
+
 .card{
     margin-top: 5% !important;
     margin-left: 2%;
@@ -120,49 +143,16 @@ clip-path{
 }
 
 
-.form{
-    margin-left: 38% !important;
-    margin-top: 2%;
-}
+
 .connexion{
     margin-left: 35%;
     margin-top: 2%;
     font-weight: bold;
     font-size: 200%;
 }
-input{
-    width: 60% !important;
-}
-.btn{
-    margin-bottom: 2% ;
-}
-.title-float{
-    margin-left: 10%;
-    position:relative;
-    overflow:hidden;
-    
-  }
-  .title-float:after {
-    content:'';
-    height:0;
-    margin-top: 1.5%;
-    border-top:solid 4px;
-    width:60%;
-    position:absolute;
-    margin-left: 2%;
-    color: #E36B6B !important;
-  }
 
 
 
-
-
-
-
-
-
-
-  
 
 .btn-delete{
     background-color:  #3B2A1C  !important;
@@ -176,9 +166,7 @@ input{
     width: 100% !important;
 }
 
-  .responsive-title{
-      display: none;
-  }
+  
   
 
 .btn-post{
@@ -292,6 +280,7 @@ border-top: 1px solid #000;
   clip-path{
     display: none;
 }
+
 .responsive-title{
     display: unset;
     margin-left: 20%;
@@ -299,9 +288,18 @@ border-top: 1px solid #000;
     font-weight: bold;
     font-size: 150%;
 }
+.membre{
+    font-size: 85%;
+}
+.input-connexion{
+    width: 60% !important;
+    font-size: 85%;
+}
 .title-float{
     display: none;
 }
+
+
 
 .imgArticle{
     width: 220px;

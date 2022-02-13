@@ -14,20 +14,18 @@
 <body>
     <header>
         <div class="ifconnected">
-            <?php if(!empty($_SESSION['email'])){
-             echo 'Bienvenue '.$_SESSION["pseudo"].' !';}
-             if (!isset($_SESSION['email'])){
+            <?php if(!empty($_SESSION)){
+             echo 'Bienvenue '.$_SESSION['user']->getPseudo().' !';
+            }
+             if (empty($_SESSION)){
              ?>
             <a class="coheader" href="<?=URL?>etoile/connexion"> Se connecter</a>
             <?php }?>
-            <?php if (isset($_SESSION['email'])){?>
+            <?php if (!empty($_SESSION)){?>
             <a class="coheader" href="<?=URL?>etoile/deconnexion"> Se déconnecter</a>
-
             <?php }?>
         </div>
-
         <img class="logo" src="<?=URL?>public/image/logo.png" alt="etoile'actu">
-
         <nav>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
@@ -36,7 +34,7 @@
                 <li class="nav-item">
                     <a class="nav-link lien" href="<?= URL ?>etoile/article">Article</a>
                 </li>
-                <?php if (isset($_SESSION['id_role']) && $_SESSION['id_role'] == 1){?>
+                <?php if (!empty($_SESSION) && $_SESSION['user']->getIdRole() == 1){?>
                 <li class="nav-item">
                     <a class="nav-link lien" href="<?= URL ?>etoile/ajouter">Ajouter</a>
                 </li>
@@ -47,7 +45,7 @@
                 <li class="nav-item">
                     <a class="nav-link lien" href="<?= URL?>">Jeux</a>
                 </li>
-                <?php if(isset($_SESSION['email'])){?>
+                <?php if(!empty($_SESSION)){?>
 
                 <li class="nav-item">
                     <a class="nav-link lien" href="<?= URL ?>etoile/profil">Mon profil</a>
@@ -77,12 +75,6 @@
                     <?php } ?>
                 </div>
             </div>
-            </div>
-            </div>
-
         </nav>
-
     </header>
-
-
 </body>

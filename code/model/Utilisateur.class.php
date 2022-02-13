@@ -9,30 +9,29 @@ class Utilisateur{
     private $idUser;
     private $idRole;
 
-    function __construct($pseudo, $mdp, $email, $imageProfil,$idUser, $idRole)
+    function __construct($idUser, $pseudo, $mdp, $email, $imageProfil, $idRole)
     {
+        $this-> idUser = $idUser;
        $this-> pseudo = $pseudo;
        $this-> mdp = $mdp;
        $this-> email = $email;
        $this-> imageProfil = $imageProfil;
-       $this-> idUser = $idUser;
        $this-> idRole = $idRole;
     }
     
 	public function getPseudo() {
         
-		return $this->pseudo;
+		return htmlspecialchars($this->pseudo);
 	}
 
     public function setPseudo($pseudo): self
     {
         $this->pseudo = $pseudo;
-
         return $this;
     }
 
     public function getIdRole(){
-        return $this->idRole;
+        return htmlspecialchars($this->idRole);
     }
 
     public function setIdRole($idRole): self{
@@ -41,7 +40,7 @@ class Utilisateur{
     }
 
     public function getMdp(){
-        return $this->mdp;
+        return htmlspecialchars($this->mdp);
     }
 
     public function setMdp($mdp): self {
@@ -50,8 +49,7 @@ class Utilisateur{
     }
 
     public function getEmail(){
-        return $this -> email;
-
+        return htmlspecialchars($this->email);
     }
 
     public function setEmail($email): self{
@@ -60,7 +58,7 @@ class Utilisateur{
     }
 
     public function getImage(){
-        return $this->imageProfil;
+        return htmlspecialchars($this->imageProfil);
     }
 
     public function setImage($imageProfil): self {
@@ -69,7 +67,7 @@ class Utilisateur{
     }
 
     public function getIdUtil(){
-        return $this->IdUtil;
+        return htmlspecialchars($this->IdUtil);
     }
 
     

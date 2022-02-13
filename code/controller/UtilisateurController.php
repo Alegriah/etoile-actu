@@ -21,15 +21,28 @@ class UtilisateurController{
         require './view/connexion.view.php';
     }
 
-    public function connexion(){  
-        $this -> utilisateurManager -> getUser();
-    }
-
     public function deconnexion(){
-        session_start ();
-        session_unset ();
         session_destroy ();
         header("Location: ".URL. 'accueil');
+    }
+       
+    public function sessionUser($user){
+        $_SESSION['user'] = $user;
+    }
+
+    public function connexion(){
+        if(empty($_POST['pseudo']) || empty($_POST['mdp'])){
+            throw new Exception("Renseignez tous les champs");   
+        }
+        $user = $this->utilisateurManager->findUserByPseudoDB($_POST['pseudo']);
+        if(!empty($user)){
+            if($_POST['pseudo'] == $user->getPseudo() && password_verify($_POST['mdp'],$user->getMdp())){
+                $this->sessionUser($user);
+                header("Location: ".URL."accueil");
+            }else{
+                 header("Location: ".URL."etoile/connexion");
+            }
+        }
     }
 
     public function inscription(){
@@ -40,48 +53,40 @@ class UtilisateurController{
         if(empty($_POST['pseudo']) || empty($_POST['mdp'])){
             throw new Exception("Merci de renseigner tout les champs");   
         }
-        if(!empty($_POST['mdp'])){
-            $userExist = $this->utilisateurManager->FindUserByPseudoDB($_POST['pseudo']);
+        if(!empty($_POST['mdp']) && !empty($_POST['email']) && !empty($_POST['pseudo'])){
+            $userExist = $this->utilisateurManager->findUserByPseudoDB($_POST['pseudo']);
             if(!$userExist){
                 $hash = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $this->utilisateurManager->insertUserDB($_POST['pseudo'],$hash, $_POST['email']);
+                $this->utilisateurManager->insertUserDB($_POST['pseudo'],$hash, $_POST['email'], "avatar.jpg", 2);
             }else{
                 throw new Exception("L'utilisateur existe déjà.");
             }
-        }else{
-            throw new Exception("Les deux mots de passes ne sont pas identiques.");
         }
-        $user = new Utilisateur($this->utilisateurManager->lastId(),$_POST['pseudo'],$hash,$_POST['email'],2);
-        $this->sessionUser($user);
-        GlobalController::alert("success", "Compte crée avec succès");
-        header("Location: ".URL. 'etoile/connexion');
+       header("Location: ".URL. 'etoile/connexion');
     }
         
-    
-    public function sessionUser($user){
-        $_SESSION['user'] = $user;
-    }
+ 
 
     public function modifyUser(){
         require "view/modifierProfil.view.php";
     }
 
     function modifyUserValidate(){
-            $currentImage = $this->utilisateurManager->findUserByIdDB($_SESSION['id_user'])->getImage();
+            $currentImage = $this->utilisateurManager->findUserByIdDB($_SESSION['user'])->getImage();
             $file = $_FILES['photo'];
             if ($file['size'] > 0) {
                 $dir = "public/image/";
-                $imageToAdd = GlobalController::addImage($_SESSION['pseudo'], $file, $dir);
+                $imageToAdd = GlobalController::addImage($_SESSION['user']->getPseudo(), $file, $dir);
             } else {
                 $imageToAdd = $currentImage;
-            }
+            }if(!empty($_POST['mdp'])){
             $hash = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-            $this->utilisateurManager->modifUserDB($_SESSION['id_user'], $_POST['pseudo'], $hash, $_POST['email'], $imageToAdd);
-            $_SESSION['pseudo'] =  $_POST['pseudo'];
-            $_SESSION['email'] =  $_POST['email'];
-            $_SESSION['image'] = $currentImage;
-            $_SESSION['mdp'] = $_POST['mdp'];
+            $this->utilisateurManager->modifUserDB($_SESSION['user']->getIdUtil(), $_POST['pseudo'], $hash, $_POST['email'], $imageToAdd);
             header("Location: " . URL . "etoile/profil");
+            }else{
+                $this->utilisateurManager->modifUserNoMdp($_SESSION['user']->getIdUtil(), $_POST['pseudo'], $_POST['email'], $imageToAdd);
+
+            }
     }
 
 }
